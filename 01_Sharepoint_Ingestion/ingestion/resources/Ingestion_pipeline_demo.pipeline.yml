@@ -1,0 +1,23 @@
+resources:
+  pipelines:
+    sharepoint_file_pipeline:
+      name: sharepoint_file_pipeline
+      channel: PREVIEW
+      catalog: elevator_pitch
+      schema: default
+      ingestion_definition:
+        connection_name: demo-connection-1
+        objects:
+          - table:
+              destination_catalog: elevator_pitch
+              destination_schema: default
+              destination_table: will_not_bet_used
+              table_configuration:
+                table_properties:
+                  databricks.filespace-preview: /Volumes/elevator_pitch/default/test_volume/
+              connector_options:
+                sharepoint_options:
+                  entity_type: FILE
+                  url: https://datamyselfai.sharepoint.com/sites/elevator_pitch
+                  file_ingestion_options:
+                    format: FILE
